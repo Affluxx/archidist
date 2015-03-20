@@ -83,11 +83,8 @@ public class CityManager {
      * @return tmp
      * A list of cities.
      */
-    // TODO : Ask to steeven.
-    // La liste peut etre vide si on trouve pas de ville avec cityName ?
-    // Est ce normal ?
 	public List<City> searchFor(String cityName){
-		// TODONE: à compléter
+		// TODO DONE: à compléter
 		List<City> tmp = new ArrayList<City>();
 		for (City c : cities){
 			if(c.getName().equals(cityName)){
@@ -106,7 +103,7 @@ public class CityManager {
      * @throws CityNotFound
      * If the city don't exist we throw an exception
      */
-	public City searchExactPosition(Position position) throws CityNotFound{
+	public City searchExactPosition(Position position) /* TODO throws CityNotFound */{
         // We look all city
 		for(City city : getCities()){
             // If one city have the exact position we return it
@@ -115,11 +112,12 @@ public class CityManager {
 			}
 		}
         // If we don't find a result that mean we can not find a city at this position
-		throw new CityNotFound();
+		//throw new CityNotFound();
+        return null;
 	}
 	
 	/**
-	 * TODONE: searchNear : une fonction qui retourne la liste des villes à dix klomètres d'une position
+	 * TODO DONE: searchNear : une fonction qui retourne la liste des villes à dix klomètres d'une position
 	 */
     /**
      * With the function searcNear you can have a list of cities around a position
@@ -131,22 +129,22 @@ public class CityManager {
 	public List<City> searchNear(Position p){
 		// At first we create a List to stock the result.
 		List<City> tmp = new ArrayList<City>();
-        //TODO : Ask to steeven
-        //Steeven : Need you to explain this part
-		double R = 6371d;
+
 		//With the two variables we search all cities around the position
 		for (City c : getCities()){
-            // We use math to calculate d. And with d we can know if we have to add the city or not
-            // The calcul use the position and the information of the city.
-			double d = R * Math.acos(Math.cos(c.getPosition().getLatitude() * Math.PI / 180) * Math.cos(p.getLatitude() * Math.PI / 180) *
-		            Math.cos(p.getLongitude() - c.getPosition().getLongitude() * Math.PI / 180) + Math.sin(c.getPosition().getLatitude() * Math.PI / 180) *
-		                     Math.sin(p.getLatitude() * Math.PI / 180));
 			//Here we have the test who validate the city
-            if(d<10000){
+            if(p.distanceTo(c.getPosition()) < 10000){
 				tmp.add(c);
 			}
 		}
 		// And after the research we return the result.
 		return tmp;
 	}
+
+    /**
+     * clear the city list
+     */
+    public void clear(){
+        cities.clear();
+    }
 }

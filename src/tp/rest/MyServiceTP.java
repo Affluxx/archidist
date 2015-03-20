@@ -19,6 +19,9 @@ import tp.model.CityManager;
 import tp.model.CityNotFound;
 import tp.model.Position;
 
+import java.text.NumberFormat;
+import java.text.ParseException;
+
 @WebServiceProvider
                    
 @ServiceMode(value=Service.Mode.MESSAGE)
@@ -42,8 +45,6 @@ public class MyServiceTP implements Provider<Source> {
             System.out.println("Exception " + je);
             throw new WebServiceException("Cannot create JAXBContext", je);
         }
-        cityManager.addCity(new City("Rouen",49.437994,1.132965,"FR"));
-        cityManager.addCity(new City("Neuor",12,42,"RF"));
 	}
 	 
     public Source invoke(Source source) {
@@ -59,61 +60,118 @@ public class MyServiceTP implements Provider<Source> {
 				    return post(source, mc);
            	if (method.equals("PUT")) 
 					return put(source, mc); 
-           	if (method.equals("DELETE")) 
-					return delete(source, mc); 
-			throw new WebServiceException("Unsupported method:" +method);  
+           	if (method.equals("DELETE"))
+                try {
+                    return delete(source, mc);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            throw new WebServiceException("Unsupported method:" +method);
         } catch(JAXBException je) {
             throw new WebServiceException(je);
         }
     }
 
 	private Source put(Source source, MessageContext mc) throws JAXBException {
-		// TODO à compléter 
+		// TODO DONE à compléter
 		// * ajouter une ville passée en paramètre au citymanager
-		
-		return new JAXBSource(jc, "todo");
+        Unmarshaller u = jc.createUnmarshaller();
+        City city =(City)u.unmarshal(source);
+
+        cityManager.addCity(city);
+
+        return new JAXBSource(jc, cityManager);
 	}
 
-	private Source delete(Source source, MessageContext mc) {
-		
-		// TODO à compléter 
-		// * effacer toute la liste de ville
+	private Source delete(Source source, MessageContext mc) throws JAXBException, ParseException {
+
+		// TODO DONE à compléter
 		// * effacer la ville passée en paramètre
-		
-		return null;
+
+        Unmarshaller u = jc.createUnmarshaller();
+        String path = (String) mc.get(MessageContext.PATH_INFO);
+        System.out.println("path : " + path);
+        if(path != null && path.equals("all")){
+            cityManager.clear();
+        } else {
+            String[] info = path.split("/");
+            City city;
+            city = new City(info[1],Double.parseDouble(info[3]),Double.parseDouble(info[2]), info[0]);
+            City found = null;
+            for(City c : cityManager.getCities()){
+                System.out.println("city c : " + c.toString());
+
+                if (c.getPosition().equals(city.getPosition())){
+                    found = c;
+                }
+            }
+            if(found == null){
+                System.out.println("city not found : " + city.toString());
+                //throw new CityNotFound();
+            } else {
+                System.out.println("city found");
+
+            }
+            cityManager.removeCity(found);
+        }
+        return new JAXBSource(jc, cityManager);
 	}
 
 	private Source post(Source source, MessageContext mc) throws JAXBException {
 		// * rechercher une ville à partir de sa position
 		Unmarshaller u = jc.createUnmarshaller();
 		Position position=(Position)u.unmarshal(source);
-		Object message;
+        CityManager cities = new CityManager();
+        String path = (String) mc.get(MessageContext.PATH_INFO);
+        System.out.println("path : " + path);
+        if (path != null && path.equals("near")) {
+            for(City c :  cityManager.searchNear(position)){
+                cities.addCity(c);
+            }
+            return new JAXBSource(jc, cities);
+        } else {
+            cities.addCity(cityManager.searchExactPosition(position));
+            return new JAXBSource(jc, cities);
+        }
+		/*Object message;
 		try {
-			if (mc.containsKey("near")){
-				message = cityManager.searchNear(position);
-			} else {
-				message = cityManager.searchExactPosition(position);
-			}
 		} catch (CityNotFound cnf) {
 			// TODO: retourner correctement l'exception
 			message = cnf;
-		}
-		
-		return new JAXBSource(jc, message);
-		// TODO à compléter 
+		}*/
+
+		// TODO DONE à compléter
 		// * rechercher les villes proches de cette position si l'url de post contient le mot clé "near"
 
 	}
 
 	private Source get(MessageContext mc) throws JAXBException {
-		// TODO à compléter 
+		// TODO DONE à compléter
 		// * retourner seulement la ville dont le nom est contenu dans l'url d'appel
 		// * retourner tous les villes seulement si le chemin d'accès est "all"
-		return new JAXBSource(jc, cityManager);
-	}
+
+        String path = (String) mc.get(MessageContext.PATH_INFO);
+        CityManager cities = new CityManager();
+        System.out.println(path);
+        if (path == null || path.equals("all")) {
+            System.out.println("ALL");
+            return new JAXBSource(jc, cityManager);
+        } else {
+            String[] info = path.split("/");
+            for (String name : info){
+                System.out.println("name : " + name);
+                for (City c : cityManager.getCities()){
+                    if(c.getName().equals(name)){
+                        cities.addCity(c);
+                    }
+                }
+            }
+        }
+        return new JAXBSource(jc, cities);
+    }
 
 	public static void main(String args[]) {
-	      Endpoint e = Endpoint.create( HTTPBinding.HTTP_BINDING,
+	      Endpoint e = Endpoint.create(HTTPBinding.HTTP_BINDING,
 	                                     new MyServiceTP());
 	      e.publish("http://127.0.0.1:8084/");
 	       // pour arrêter : e.stop();

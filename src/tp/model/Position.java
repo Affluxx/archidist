@@ -108,5 +108,23 @@ public class Position {
         // and we return it with the method toString of the buffer
 		return buffer.toString();
 	}
-	
+
+    /**
+     * @return distance in meter between 2 Position
+     */
+    public double distanceTo(Position p){
+        float pk = (float) (180/3.14169);
+
+        double a1 = p.getLatitude()/ pk;
+        double a2 = p.getLongitude()/ pk;
+        double b1 = this.getLatitude()/ pk;
+        double b2 = this.getLongitude()/ pk;
+
+        double t1 = Math.cos(a1)*Math.cos(a2)*Math.cos(b1)*Math.cos(b2);
+        double t2 = Math.cos(a1)*Math.sin(a2)*Math.cos(b1)*Math.sin(b2);
+        double t3 = Math.sin(a1)*Math.sin(b1);
+        double tt = Math.acos(t1 + t2 + t3);
+
+        return 6366000*tt;
+    }
 }

@@ -1,5 +1,6 @@
 package tp.rest;
 
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +20,7 @@ import javax.xml.ws.http.HTTPBinding;
 
 import tp.model.City;
 import tp.model.CityManager;
+import tp.model.CityManagerService;
 import tp.model.Position;
 
 /**
@@ -32,6 +34,10 @@ public class MyClient {
 	private Service service;
 	private JAXBContext jc;
 
+    private static final QName SERVICE_NAME =
+            new QName("http://of.package/", "CityManagerService");
+    private static final QName PORT_NAME =
+            new QName("http://of.package/", "CityManagerPort");
 	private static final QName qname = new QName("", "");
 	private static final String url = "http://127.0.0.1:8084";
 
@@ -146,6 +152,12 @@ public class MyClient {
 	}
 
 	public static void main(String args[]) throws Exception {
+        URL wsdlURL = new URL("http://127.0.0.1:8084/citymanager?wsdl");
+        Service service = Service.create(wsdlURL, SERVICE_NAME);
+        CityManagerService cityManager = service.getPort(PORT_NAME, CityManagerService.class);
+        System.out.println(cityManager.getCities());
+        /**
+         * Scenario set up
 		MyClient client = new MyClient();
 
         System.out.println("get all");
@@ -259,7 +271,7 @@ public class MyClient {
 
         System.out.println("get all");
         client.getAllCities();
-
+        */
 
         /*
              - Affihez l'ensemble des villes

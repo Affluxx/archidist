@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+import javax.jws.WebService;
 import javax.xml.bind.annotation.XmlRootElement;
 // Doc ok
 
@@ -20,7 +21,8 @@ import javax.xml.bind.annotation.XmlRootElement;
  *
  */
 @XmlRootElement
-public class CityManager {
+@WebService(endpointInterface = "package.of.CityManagerService", serviceName = "CityManagerService")
+public class CityManager implements CityManagerService {
     // An attribute for the cities in the manager
 	private List<City> cities;
 

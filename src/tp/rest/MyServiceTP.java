@@ -36,7 +36,12 @@ public class MyServiceTP implements Provider<Source> {
 	
 	@javax.annotation.Resource(type=Object.class)
 	protected WebServiceContext wsContext;
-	
+	public MyServiceTP() {
+        CityManager cityManager = new CityManager();
+        cityManager.addCity(new City("Rouen",50,50,"FR"));
+        Endpoint.publish("http://127.0.0.1:8084/citymanager", cityManager);
+    }
+    /**
 	public MyServiceTP(){
 		try {
             jc = JAXBContext.newInstance(CityManager.class,City.class,Position.class);
@@ -46,6 +51,7 @@ public class MyServiceTP implements Provider<Source> {
             throw new WebServiceException("Cannot create JAXBContext", je);
         }
 	}
+     */
 	 
     public Source invoke(Source source) {
     	
@@ -170,10 +176,15 @@ public class MyServiceTP implements Provider<Source> {
         return new JAXBSource(jc, cities);
     }
 
-	public static void main(String args[]) {
+	public static void main(String args[]) throws InterruptedException {
+        /*
 	      Endpoint e = Endpoint.create(HTTPBinding.HTTP_BINDING,
 	                                     new MyServiceTP());
 	      e.publish("http://127.0.0.1:8084/");
 	       // pour arrêter : e.stop();
+    */
+        new MyServiceTP();
+        Thread.sleep(15 * 60 * 1000);
+        System.exit(0);
 	 }
 }

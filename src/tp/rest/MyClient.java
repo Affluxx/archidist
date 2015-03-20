@@ -32,11 +32,9 @@ public class MyClient {
         CityManagerService cityManager = service.getPort(PORT_NAME, CityManagerService.class);
         System.out.println(cityManager.getCities());
         City c = new City("Zanarkand", 16,64, "Hyrule");
-        //boolean a = cityManager.addCity(c);
-        //System.out.println(a);
-        //cityManager.addCity(c);
-        boolean b = cityManager.removeCity(c);
-        System.out.println(b);
+        cityManager.addCity(c);
+        cityManager.addCity(c);
+        cityManager.removeCity(c);
         System.out.println(cityManager.getCities());
     }
 }

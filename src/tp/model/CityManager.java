@@ -59,7 +59,21 @@ public class CityManager {
      * @return true
      */
 	public boolean addCity(City city){
-		return cities.add(city);
+        boolean found = false;
+        for(City c : this.getCities()){
+            System.out.println("city c : " + c.toString());
+            if (c.getPosition().equals(city.getPosition())){
+                found = true;
+            }
+        }
+        if(found){
+            System.out.println("city not added : already in");
+            return true;
+        } else {
+            System.out.println("city added");
+            return cities.add(city);
+
+        }
 	}
 	// A method who remove a city of the list
 

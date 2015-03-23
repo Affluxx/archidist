@@ -71,7 +71,22 @@ public class CityManager {
      * @return true if the list contain the city
      */
 	public boolean removeCity(City city){
-		return cities.remove(city);
+        City found = null;
+        for(City c : this.getCities()){
+            System.out.println("city c : " + c.toString());
+
+            if (c.getPosition().equals(city.getPosition())){
+                found = c;
+            }
+        }
+        if(found == null){
+            System.out.println("city not found : " + city.toString());
+            //throw new CityNotFound();
+        } else {
+            System.out.println("city found");
+
+        }
+        return cities.remove(found);
 	}
 
     /**

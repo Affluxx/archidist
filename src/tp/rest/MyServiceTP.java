@@ -97,22 +97,8 @@ public class MyServiceTP implements Provider<Source> {
             String[] info = path.split("/");
             City city;
             city = new City(info[1],Double.parseDouble(info[3]),Double.parseDouble(info[2]), info[0]);
-            City found = null;
-            for(City c : cityManager.getCities()){
-                System.out.println("city c : " + c.toString());
-
-                if (c.getPosition().equals(city.getPosition())){
-                    found = c;
-                }
-            }
-            if(found == null){
-                System.out.println("city not found : " + city.toString());
-                //throw new CityNotFound();
-            } else {
-                System.out.println("city found");
-
-            }
-            cityManager.removeCity(found);
+            System.out.println("city c : " + city.toString());
+            cityManager.removeCity(city);
         }
         return new JAXBSource(jc, cityManager);
 	}

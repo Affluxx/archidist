@@ -65,6 +65,8 @@ public class MyServiceTP implements Provider<Source> {
                     return delete(source, mc);
                 } catch (ParseException e) {
                     e.printStackTrace();
+                } catch (CityNotFound cityNotFound) {
+                    cityNotFound.printStackTrace();
                 }
             throw new WebServiceException("Unsupported method:" +method);
         } catch(JAXBException je) {
@@ -83,7 +85,7 @@ public class MyServiceTP implements Provider<Source> {
         return new JAXBSource(jc, cityManager);
 	}
 
-	private Source delete(Source source, MessageContext mc) throws JAXBException, ParseException {
+	private Source delete(Source source, MessageContext mc) throws JAXBException, ParseException, CityNotFound {
 
 		// TODO DONE à compléter
 		// * effacer la ville passée en paramètre
@@ -116,7 +118,11 @@ public class MyServiceTP implements Provider<Source> {
             }
             return new JAXBSource(jc, cities);
         } else {
-            cities.addCity(cityManager.searchExactPosition(position));
+            try {
+                cities.addCity(cityManager.searchExactPosition(position));
+            } catch (CityNotFound cityNotFound) {
+                cityNotFound.printStackTrace();
+            }
             return new JAXBSource(jc, cities);
         }
 		/*Object message;

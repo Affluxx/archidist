@@ -84,7 +84,7 @@ public class CityManager {
      * City to be removed from the list
      * @return true if the list contain the city
      */
-	public boolean removeCity(City city){
+	public boolean removeCity(City city) throws CityNotFound {
         City found = null;
         for(City c : this.getCities()){
             System.out.println("city c : " + c.toString());
@@ -95,7 +95,7 @@ public class CityManager {
         }
         if(found == null){
             System.out.println("city not found : " + city.toString());
-            //throw new CityNotFound();
+            throw new CityNotFound();
         } else {
             System.out.println("city found");
 
@@ -132,7 +132,7 @@ public class CityManager {
      * @throws CityNotFound
      * If the city don't exist we throw an exception
      */
-	public City searchExactPosition(Position position) /* TODO throws CityNotFound */{
+	public City searchExactPosition(Position position) throws CityNotFound {
         // We look all city
 		for(City city : getCities()){
             // If one city have the exact position we return it
@@ -141,8 +141,7 @@ public class CityManager {
 			}
 		}
         // If we don't find a result that mean we can not find a city at this position
-		//throw new CityNotFound();
-        return null;
+		throw new CityNotFound();
 	}
 	
 	/**

@@ -2,38 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="70a0cd03-877b-4456-b750-7f69c06e4e24" name="Default" comment="Il ne reste plus que les doublons a l'ajout a enlever et s'occuper des exceptions">
-      <change type="DELETED" beforePath="D:\Progra\archidist\bin\tp\model\City.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\bin\tp\model\CityManager.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\bin\tp\model\CityManagerService.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\bin\tp\model\CityNotFound.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\bin\tp\model\ObjectFactory.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\bin\tp\model\Position.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\bin\tp\rest\MyClient.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\bin\tp\rest\MyServiceTP.class" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\src\REST.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\src\main\java\tp\model\City.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\src\tp\model\City.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\src\tp\model\CityManager.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\src\tp\model\CityManagerService.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\src\tp\model\CityNotFound.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\src\tp\model\ObjectFactory.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\src\tp\model\Position.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\src\tp\model\package-info.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\src\tp\rest\MyClient.java" afterPath="" />
-      <change type="DELETED" beforePath="D:\Progra\archidist\src\tp\rest\MyServiceTP.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tp/model/CityManager.java" afterPath="$PROJECT_DIR$/src/main/java/tp/model/CityManager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tp/model/CityManagerService.java" afterPath="$PROJECT_DIR$/src/main/java/tp/model/CityManagerService.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tp/model/CityNotFound.java" afterPath="$PROJECT_DIR$/src/main/java/tp/model/CityNotFound.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tp/rest/MyClient.java" afterPath="$PROJECT_DIR$/src/main/java/tp/rest/MyClient.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tp/rest/MyServiceTP.java" afterPath="$PROJECT_DIR$/src/main/java/tp/rest/MyServiceTP.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tp/model/ObjectFactory.java" afterPath="$PROJECT_DIR$/src/main/java/tp/model/ObjectFactory.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/tp/model/Position.java" afterPath="$PROJECT_DIR$/src/main/java/tp/model/Position.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="archidist.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path=".idea/dataSources.local.xml" />
+    <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -103,7 +78,7 @@
       <file leaf-file-name="MyClient.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/tp/rest/MyClient.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7357513" vertical-offset="158" max-vertical-offset="2278">
+            <state vertical-scroll-proportion="0.7613941" vertical-offset="158" max-vertical-offset="2278">
               <caret line="26" column="48" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -172,7 +147,18 @@
     <detection-done>true</detection-done>
   </component>
   <component name="MavenProjectNavigator">
-    <treeState />
+    <treeState>
+      <PATH>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$RootNode" />
+        </PATH_ELEMENT>
+        <PATH_ELEMENT>
+          <option name="myItemId" value="ArtifactId" />
+          <option name="myItemType" value="org.jetbrains.idea.maven.navigator.MavenProjectsStructure$ProjectNode" />
+        </PATH_ELEMENT>
+      </PATH>
+    </treeState>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
@@ -355,7 +341,7 @@
     <property name="options.splitter.main.proportions" value="0.3" />
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="LayoutCode.rearrangeEntriesJava" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/pom.xml" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -747,12 +733,12 @@
       <workItem from="1426859429796" duration="5662000" />
       <workItem from="1427458580040" duration="6696000" />
       <workItem from="1427471457322" duration="474000" />
-      <workItem from="1427472067609" duration="1050000" />
+      <workItem from="1427472067609" duration="1269000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39858000" />
+    <option name="totallyTimeSpent" value="40077000" />
   </component>
   <component name="TodoView" selected-index="0">
     <todo-panel id="selected-file">
@@ -776,7 +762,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1296" height="699" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -788,9 +774,9 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.23701298" sideWeight="0.36886993" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928804" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="true" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32928804" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32864866" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23475046" sideWeight="0.63113004" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.23475046" sideWeight="0.63113004" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32900432" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.18770227" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -853,6 +839,9 @@
     <option name="myTodoPanelSettings">
       <TodoPanelSettings />
     </option>
+    <ignored-roots>
+      <path value="$PROJECT_DIR$" />
+    </ignored-roots>
     <MESSAGE value="Il ne reste plus que les doublons a l'ajout a enlever et s'occuper des exceptions" />
     <option name="LAST_COMMIT_MESSAGE" value="Il ne reste plus que les doublons a l'ajout a enlever et s'occuper des exceptions" />
   </component>
@@ -935,7 +924,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/tp/rest/MyClient.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7357513" vertical-offset="158" max-vertical-offset="2278">
+        <state vertical-scroll-proportion="0.7613941" vertical-offset="158" max-vertical-offset="2278">
           <caret line="26" column="48" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
           <folding>
             <element signature="imports" expanded="true" />

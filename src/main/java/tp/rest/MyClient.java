@@ -1,15 +1,14 @@
-package tp.rest;
-
+package main.java.tp.rest;
 import java.net.URL;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.namespace.QName;
 import javax.xml.ws.Service;
 
-import tp.model.City;
-import tp.model.CityManagerService;
-import tp.model.CityNotFound;
-import tp.model.Position;
+import main.java.tp.model.City;
+import main.java.tp.model.CityManagerService;
+import main.java.tp.model.CityNotFound;
+import main.java.tp.model.Position;
 
 /**
  * This class represent myClient. It can
@@ -23,9 +22,9 @@ public class MyClient {
 	private JAXBContext jc;
 
     private static final QName SERVICE_NAME =
-            new QName("http://model.tp/", "CityManagerService");
+            new QName("http://model.tp.java.main/", "CityManagerService");
     private static final QName PORT_NAME =
-            new QName("http://model.tp/", "CityManagerPort");
+            new QName("http://model.tp.java.main/", "CityManagerPort");
 
     /**
      * The main method

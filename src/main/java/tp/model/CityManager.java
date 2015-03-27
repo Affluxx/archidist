@@ -1,4 +1,4 @@
-package tp.model;
+package main.java.tp.model;
 
 import javax.jws.WebService;
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ import java.util.List;
  * <li>return the list of cities near 10km of the given position</li>
  * </ul>
  */
-@WebService(endpointInterface = "tp.model.CityManagerService", serviceName = "CityManagerService")
+@WebService(endpointInterface = "main.java.tp.model.CityManagerService", serviceName = "CityManagerService")
 public class CityManager implements CityManagerService {
     /**
      * TODO Tel to Steeven :

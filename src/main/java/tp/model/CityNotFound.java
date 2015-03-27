@@ -1,5 +1,4 @@
-package tp.model;
-
+package main.java.tp.model;
 /**
  * This class represent a CityNotFound Exception.
  */

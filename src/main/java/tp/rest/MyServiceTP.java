@@ -1,12 +1,12 @@
-package tp.rest;
+package main.java.tp.rest;
 import javax.xml.ws.Endpoint;
 import javax.xml.ws.Service;
 import javax.xml.ws.ServiceMode;
 import javax.xml.ws.WebServiceContext;
 import javax.xml.ws.WebServiceProvider;
 
-import tp.model.City;
-import tp.model.CityManager;
+import main.java.tp.model.City;
+import main.java.tp.model.CityManager;
 
 /**
  * This class represent a MyServiceTP. It can :

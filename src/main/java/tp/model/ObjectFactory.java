@@ -1,4 +1,4 @@
-package tp.model;
+package main.java.tp.model;
 
 import javax.xml.bind.JAXBElement;
 import javax.xml.bind.annotation.XmlElementDecl;

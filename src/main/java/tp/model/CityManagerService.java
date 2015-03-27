@@ -1,4 +1,4 @@
-package tp.model;
+package main.java.tp.model;
 
 import javax.jws.WebService;
 import java.util.List;

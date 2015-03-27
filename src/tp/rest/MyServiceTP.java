@@ -26,16 +26,16 @@ import java.text.ParseException;
 @ServiceMode(value=Service.Mode.MESSAGE)
 public class MyServiceTP implements Provider<Source> {
 	//todo doc all
-	/**
-	 * Gère les villes
-	 */
 	private CityManager cityManager = new CityManager();
 	
 	private JAXBContext jc;
 	
 	@javax.annotation.Resource(type=Object.class)
 	protected WebServiceContext wsContext;
-	
+
+    /**
+     * Construct a new MyServiceTP
+     */
 	public MyServiceTP(){
 		try {
             jc = JAXBContext.newInstance(CityManager.class,City.class,Position.class);
@@ -45,9 +45,15 @@ public class MyServiceTP implements Provider<Source> {
             throw new WebServiceException("Cannot create JAXBContext", je);
         }
 	}
-	 
+
+    /**
+     * Return a Source
+     * @param source
+     * The source to use
+     * @return
+     */
     public Source invoke(Source source) {
-    	
+
         try{
             MessageContext mc = wsContext.getMessageContext();
             String path = (String)mc.get(MessageContext.PATH_INFO);
@@ -73,9 +79,20 @@ public class MyServiceTP implements Provider<Source> {
         }
     }
 
+    /**
+     * Return a new source after add a city
+     * @param source
+     * The source we want to use to add the city
+     * @param mc
+     * The message to send to the user
+     * @return
+     * A new source with the city
+     * @throws JAXBException
+     * Can throw a JAXBException  if the source creation fail
+     */
 	private Source put(Source source, MessageContext mc) throws JAXBException {
 		// TODO DONE à compléter
-		// * ajouter une ville passée en paramètre au citymanager
+		// add a city in the citymanager
         Unmarshaller u = jc.createUnmarshaller();
         City city =(City)u.unmarshal(source);
 
@@ -84,6 +101,22 @@ public class MyServiceTP implements Provider<Source> {
         return new JAXBSource(jc, cityManager);
 	}
 
+    /**
+     * Return a source after delete a city
+     * @param source
+     * The souce we want to use to delete the city
+     * @param mc
+     * The message to send to the user
+     * @return
+     * A new source without the city
+     * @throws JAXBException
+     * Can throw a JAXBException if the source creation fail
+     * @throws ParseException
+     * Can throw a ParseException
+     * @throws CityNotFound
+     * Can throw a CityNotFound if we can not found the city to delete
+     *
+     */
 	private Source delete(Source source, MessageContext mc) throws JAXBException, ParseException, CityNotFound {
 
 		// TODO DONE à compléter
@@ -104,6 +137,17 @@ public class MyServiceTP implements Provider<Source> {
         return new JAXBSource(jc, cityManager);
 	}
 
+    /**
+     * Return a source
+     * @param source
+     * The source we work on
+     * @param mc
+     * the message to send
+     * @return
+     * Return a new source
+     * @throws JAXBException
+     *  Throw a JAXBException if the source creation fail
+     */
 	private Source post(Source source, MessageContext mc) throws JAXBException {
 		// * rechercher une ville à partir de sa position
 		Unmarshaller u = jc.createUnmarshaller();
@@ -128,6 +172,7 @@ public class MyServiceTP implements Provider<Source> {
 		try {
 		} catch (CityNotFound cnf) {
 			// TODO: retourner correctement l'exception
+			// We don't understand what we have to do here
 			message = cnf;
 		}*/
 
@@ -136,6 +181,15 @@ public class MyServiceTP implements Provider<Source> {
 
 	}
 
+    /**
+     * Return a new source
+     * @param mc
+     * The message
+     * @return
+     * A new source
+     * @throws JAXBException
+     * Throw a JAXBException if the source creation fail
+     */
 	private Source get(MessageContext mc) throws JAXBException {
 		// TODO DONE à compléter
 		// * retourner seulement la ville dont le nom est contenu dans l'url d'appel
@@ -160,7 +214,7 @@ public class MyServiceTP implements Provider<Source> {
         }
         return new JAXBSource(jc, cities);
     }
-
+    
 	public static void main(String args[]) {
 	      Endpoint e = Endpoint.create(HTTPBinding.HTTP_BINDING,
 	                                     new MyServiceTP());

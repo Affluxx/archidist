@@ -58,19 +58,24 @@ public class CityManager {
      * city to be appended to this list
      * @return true
      */
-    // TODO : doc more
 	public boolean addCity(City city){
+        //first we prepare a boolean
         boolean found = false;
+        // We look all city
         for(City c : this.getCities()){
             System.out.println("city c : " + c.toString());
+            // If the city is already in the cities list we change found to true
+            //TODO : Ask to steeven : pas de test sur le nom ?
             if (c.getPosition().equals(city.getPosition())){
                 found = true;
             }
         }
+        // When found = true we don t add the city
         if(found){
             System.out.println("city not added : already in");
             return true;
         } else {
+            //If found = false we add the city
             System.out.println("city added");
             return cities.add(city);
 
@@ -85,12 +90,12 @@ public class CityManager {
      * City to be removed from the list
      * @return true if the list contain the city
      */
-    //TODO : doc more
 	public boolean removeCity(City city) throws CityNotFound {
+        // the method remove city works like add city.
         City found = null;
         for(City c : this.getCities()){
             System.out.println("city c : " + c.toString());
-
+            //TODO : ask to steeven : pareil que add : pas de test sur le nom ?
             if (c.getPosition().equals(city.getPosition())){
                 found = c;
             }
@@ -114,12 +119,14 @@ public class CityManager {
      * @return tmp
      * A list of cities.
      */
-    //TODO : doc more
 	public List<City> searchFor(String cityName){
 		// TODO DONE: à compléter
+        // First we prepare a temporary list
 		List<City> tmp = new ArrayList<City>();
+        // for all city we compare name with the param
 		for (City c : cities){
 			if(c.getName().equals(cityName)){
+                // If the names are the same we add the city to the temporary list
 				tmp.add(c);
 			}
 		}

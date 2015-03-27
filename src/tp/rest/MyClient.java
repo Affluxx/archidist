@@ -32,10 +32,13 @@ public class MyClient {
     //TODO : doc all
 	private Service service;
 	private JAXBContext jc;
-
+    // Two constants
 	private static final QName qname = new QName("", "");
 	private static final String url = "http://127.0.0.1:8084";
 
+    /**
+     * Construct a new MyClient
+     */
 	public MyClient() {
 		try {
 			jc = JAXBContext.newInstance(CityManager.class, City.class,
@@ -45,6 +48,13 @@ public class MyClient {
 		}
 	}
 
+    /**
+     * Search a city from the position
+     * @param position
+     * The position of the city
+     * @throws JAXBException
+     * Can throw a JAXBException
+     */
     public void searchForCity(Position position) throws JAXBException {
         service = Service.create(qname);
         service.addPort(qname, HTTPBinding.HTTP_BINDING, url);
@@ -55,6 +65,14 @@ public class MyClient {
         Source result = dispatcher.invoke(new JAXBSource(jc, position));
         printSource(result);
     }
+
+    /**
+     * Search cities around a position
+     * @param position
+     * The position to look around
+     * @throws JAXBException
+     * Can throw a JAXBException
+     */
     public void searchNearCity(Position position) throws JAXBException {
         service = Service.create(qname);
         service.addPort(qname, HTTPBinding.HTTP_BINDING, url + "/near");
@@ -66,6 +84,13 @@ public class MyClient {
         printSource(result);
     }
 
+    /**
+     * Add a city
+     * @param city
+     * City to add
+     * @throws JAXBException
+     * Can throw a JAXBException
+     */
     public void addCity(City city) throws JAXBException {
         service = Service.create(qname);
         service.addPort(qname, HTTPBinding.HTTP_BINDING, url);
@@ -79,6 +104,14 @@ public class MyClient {
 
     /*
         I don't know why but the source is always received null so i built the city to find in the URL
+    */
+
+    /**
+     * Remove a City
+     * @param city
+     * The city to remove
+     * @throws JAXBException
+     * Can throw a JAXBException
      */
     public void removeCity(City city) throws JAXBException {
         service = Service.create(qname);
@@ -91,6 +124,11 @@ public class MyClient {
         printSource(result);
     }
 
+    /**
+     * Remove all city
+     * @throws JAXBException
+     * Can throw a JAXBException
+     */
     public void removeAllCity() throws JAXBException {
         service = Service.create(qname);
         service.addPort(qname, HTTPBinding.HTTP_BINDING, url + "/all");
@@ -103,6 +141,14 @@ public class MyClient {
     }
     /*
         I don't know why but the source is always received null so i built the city to find in the URL
+     */
+
+    /**
+     * Get all cities
+     * @param cities
+     * the cities we want
+     * @throws JAXBException
+     * Can throw a JAXBException
      */
     public void getCities(List<String> cities) throws JAXBException {
         service = Service.create(qname);
@@ -122,6 +168,12 @@ public class MyClient {
         Source result = dispatcher.invoke(new JAXBSource(jc, new City()));
         printSource(result);
     }
+
+    /**
+     * Get all cities
+     * @throws JAXBException
+     * Can throw a JAXBException
+     */
     public void getAllCities() throws JAXBException {
         service = Service.create(qname);
         String url = this.url;
@@ -134,6 +186,11 @@ public class MyClient {
         printSource(result);
     }
 
+    /**
+     * Print the source result
+     * @param s
+     * The source to print
+     */
     public void printSource(Source s) {
 		try {
 			System.out.println("============================= Response Received =========================================");
@@ -146,8 +203,51 @@ public class MyClient {
 		}
 	}
 
+    /**
+     * Main method
+     * @param args
+     * The arguments of the main method
+     * @throws Exception
+     * Can throw Exception
+     */
 	public static void main(String args[]) throws Exception {
-		MyClient client = new MyClient();
+        /**
+         * We use a scenario to test all methods
+         */
+        /*
+             - Affichez l'ensemble des villes
+             - Supprimez toute les villes
+             - Affichez l'ensemble des villes
+             - Ajoutez Rouen en France (Lat : 49.443889; Long : 1.103333)
+             - Ajoutez Mogadiscio en Somalie (lat : 2.333333; Long : 48.85)
+             - Ajoutez Rouen en France (Lat : 49.443889; Long : 1.103333)
+             - Ajoutez Bihorel en France (Lat : 49.455278; Long : 1.116944)
+             - Ajoutez Londres en Angleterre (Lat : 51.504872; Long : -0.07857)
+             - Ajoutez Paris en France (Lat : 48.856578; Long : 2.351828)
+             - Ajoutez Paris en Canada (Lat : 43.2; Long : -80.38333)
+             - Affichez l'ensemble des villes
+             - Ajoutez Villers-Bocage en France (Lat : 49.083333; Long : -0.65)
+             - Ajoutez Villers-Bocage en France (Lat : 50.021858; Long : 2.326126)
+             - Affichez l'ensemble des villes
+             - Supprimez Villers-Bocage en France (Lat : 49.083333; Long : -0.65)
+             - Affichez l'ensemble des villes
+             - Supprimez Londres en Angleterre (Lat : 51.504872; Long : -0.07857)
+             - Supprimez Londres en Angleterre (Lat : 51.504872; Long : -0.07857)
+             - Affichez la ville située a la position exacte (Lat :49.443889; Long : 1.103333
+             - Affichez la ville située a la position exacte (Lat :49.083333; Long : -0.65
+             - Affichez la ville située a la position exacte (Lat :43.2; Long : -80.38)
+             - Affichez les villes situées à 10km de la position (Lat : 48.85; Long : 2.34)
+             - Affichez les villes situées à 10km de la position (Lat :42; Long : 64)
+             - Affichez les villes situées à 10km de la position (Lat :49.95; 1.11)
+             - Affichez la(les) ville(s) nommée(s) "Mogadiscio"
+             - Affichez la(les) ville(s) nommée(s) "Paris"
+             - Affichez la(les) ville(s) nommée(s) "Hyrule"
+            +- Supprimez la(les) ville(s) nommée(s) "Mogadiscio" ou "Paris ou "Hyrule"
+             - Supprimez toutes les villes
+             - Affichez l'ensemble des villes
+         */
+
+        MyClient client = new MyClient();
 
         System.out.println("get all");
         client.getAllCities();
@@ -260,40 +360,5 @@ public class MyClient {
 
         System.out.println("get all");
         client.getAllCities();
-
-
-        /*
-             - Affihez l'ensemble des villes
-             - Supprimez toute les villes
-             - Affichez l'ensemble des villes
-             - Ajoutez Rouen en France (Lat : 49.443889; Long : 1.103333)
-             - Ajoutez Mogadiscio en Somalie (lat : 2.333333; Long : 48.85)
-             - Ajoutez Rouen en France (Lat : 49.443889; Long : 1.103333)
-             - Ajoutez Bihorel en France (Lat : 49.455278; Long : 1.116944)
-             - Ajoutez Londres en Angleterre (Lat : 51.504872; Long : -0.07857)
-             - Ajoutez Paris en France (Lat : 48.856578; Long : 2.351828)
-             - Ajoutez Paris en Canada (Lat : 43.2; Long : -80.38333)
-             - Affichez l'ensemble des villes
-             - Ajoutez Villers-Bocage en France (Lat : 49.083333; Long : -0.65)
-             - Ajoutez Villers-Bocage en France (Lat : 50.021858; Long : 2.326126)
-             - Affichez l'ensemble des villes
-             - Supprimez Villers-Bocage en France (Lat : 49.083333; Long : -0.65)
-             - Affichez l'ensemble des villes
-             - Supprimez Londres en Angleterre (Lat : 51.504872; Long : -0.07857)
-             - Supprimez Londres en Angleterre (Lat : 51.504872; Long : -0.07857)
-             - Affichez la ville située a la position exacte (Lat :49.443889; Long : 1.103333
-             - Affichez la ville située a la position exacte (Lat :49.083333; Long : -0.65
-             - Affichez la ville située a la position exacte (Lat :43.2; Long : -80.38)
-             - Affichez les villes situées à 10km de la position (Lat : 48.85; Long : 2.34)
-             - Affichez les villes situées à 10km de la position (Lat :42; Long : 64)
-             - Affichez les villes situées à 10km de la position (Lat :49.95; 1.11)
-             - Affichez la(les) ville(s) nommée(s) "Mogadiscio"
-             - Affichez la(les) ville(s) nommée(s) "Paris"
-             - Affichez la(les) ville(s) nommée(s) "Hyrule"
-            +- Affichez la(les) ville(s) nommée(s) "Mogadiscio" ou "Paris ou "Hyrule"
-             - Supprimez toutes les villes
-             - Affichez l'ensemble des villes
-         */
-
     }
 }

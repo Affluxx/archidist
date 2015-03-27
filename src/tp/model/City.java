@@ -98,8 +98,9 @@ public class City {
 	}
 
     /**
-     * TODO : commentaire a mettre
-     * @return
+     * Return a string representation of a City
+     * @return string
+     * A string representation
      */
 	public String toString(){
 		final StringBuffer buffer = new StringBuffer();

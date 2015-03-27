@@ -8,19 +8,25 @@ import javax.xml.ws.WebServiceProvider;
 import tp.model.City;
 import tp.model.CityManager;
 
-
+/**
+ * This class represent a MyServiceTP. It can :
+ * <ul>
+ *     <li></li>
+ * </ul>
+ */
 @WebServiceProvider
                    
 @ServiceMode(value=Service.Mode.MESSAGE)
 public class MyServiceTP  {
 	
-	/**
-	 * Gère les villes
-	 */
-	
 	@javax.annotation.Resource(type=Object.class)
 	protected WebServiceContext wsContext;
+
+    /**
+     * Construct a new MyServiceTP
+     */
 	public MyServiceTP() {
+        // We create a new city manager and add a city
         CityManager cityManager = new CityManager();
         cityManager.addCity(new City("Rouen",50,50,"FR"));
         Endpoint.publish("http://127.0.0.1:8084/citymanager", cityManager);

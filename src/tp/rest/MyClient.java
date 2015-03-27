@@ -29,6 +29,7 @@ import tp.model.Position;
  *
  */
 public class MyClient {
+    //TODO : doc all
 	private Service service;
 	private JAXBContext jc;
 

@@ -58,6 +58,7 @@ public class CityManager {
      * city to be appended to this list
      * @return true
      */
+    // TODO : doc more
 	public boolean addCity(City city){
         boolean found = false;
         for(City c : this.getCities()){
@@ -84,6 +85,7 @@ public class CityManager {
      * City to be removed from the list
      * @return true if the list contain the city
      */
+    //TODO : doc more
 	public boolean removeCity(City city) throws CityNotFound {
         City found = null;
         for(City c : this.getCities()){
@@ -112,6 +114,7 @@ public class CityManager {
      * @return tmp
      * A list of cities.
      */
+    //TODO : doc more
 	public List<City> searchFor(String cityName){
 		// TODO DONE: à compléter
 		List<City> tmp = new ArrayList<City>();

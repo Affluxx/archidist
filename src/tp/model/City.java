@@ -96,7 +96,11 @@ public class City {
 	public void setCountry(String country) {
 		this.country = country;
 	}
-	
+
+    /**
+     * TODO : commentaire a mettre
+     * @return
+     */
 	public String toString(){
 		final StringBuffer buffer = new StringBuffer();
 		buffer.append(name).append(" in ").append(country).append(" at ").append(location);

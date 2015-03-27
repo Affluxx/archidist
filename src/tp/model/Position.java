@@ -99,6 +99,7 @@ public class Position {
      * the latitude and the longitude enclose in parenthesis ("()") and separate by a comma
      * like this : (latitude,longitude)
      * @return
+     * return a string representation of a position
      */
 	public String toString(){
         // At first we make a new Stringbuffer

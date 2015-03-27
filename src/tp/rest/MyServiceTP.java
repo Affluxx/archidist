@@ -19,14 +19,13 @@ import tp.model.CityManager;
 import tp.model.CityNotFound;
 import tp.model.Position;
 
-import java.text.NumberFormat;
 import java.text.ParseException;
 
 @WebServiceProvider
                    
 @ServiceMode(value=Service.Mode.MESSAGE)
 public class MyServiceTP implements Provider<Source> {
-	
+	//todo doc all
 	/**
 	 * Gère les villes
 	 */

@@ -65,7 +65,6 @@ public class CityManager {
         for(City c : this.getCities()){
             System.out.println("city c : " + c.toString());
             // If the city is already in the cities list we change found to true
-            //TODO : Ask to steeven : pas de test sur le nom ?
             if (c.getPosition().equals(city.getPosition())){
                 found = true;
             }
@@ -95,7 +94,6 @@ public class CityManager {
         City found = null;
         for(City c : this.getCities()){
             System.out.println("city c : " + c.toString());
-            //TODO : ask to steeven : pareil que add : pas de test sur le nom ?
             if (c.getPosition().equals(city.getPosition())){
                 found = c;
             }

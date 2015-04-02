@@ -22,7 +22,11 @@ import tp.model.Position;
 import java.text.ParseException;
 
 @WebServiceProvider
-                   
+
+/**
+ * This class represent a MyServiceTP.
+ *
+ */
 @ServiceMode(value=Service.Mode.MESSAGE)
 public class MyServiceTP implements Provider<Source> {
 	//todo doc all

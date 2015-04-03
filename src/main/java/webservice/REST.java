@@ -19,6 +19,6 @@ public class REST implements Provider<Source> {
     }
     public static void main(String args[]){
         Endpoint e = Endpoint.create(HTTPBinding.HTTP_BINDING, new REST());
-        e.publish("http://127.0.0.1:8090/test");
+        e.publish("http://127.0.0.1:8084/all");
     }
 }

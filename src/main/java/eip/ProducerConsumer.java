@@ -2,6 +2,7 @@ package eip;
 
 
 import org.apache.camel.CamelContext;
+import org.apache.camel.Exchange;
 import org.apache.camel.ProducerTemplate;
 import org.apache.camel.Route;
 import org.apache.camel.builder.RouteBuilder;
@@ -20,6 +21,8 @@ public class ProducerConsumer {
         final String WRITE = "ecrire";
         final String END = "exit";
         final String ROAD = "direct:consumer-all";
+        final String IP = "http://217.0.0.1.8084/all";
+        final String REP = "reponse received : ${body}";
         //Configure the logger
         BasicConfigurator.configure();
 
@@ -53,10 +56,21 @@ public class ProducerConsumer {
             }
         };
 
+        RouteBuilder httpRoad = new RouteBuilder() {
+            @Override
+            public void configure() throws Exception {
+                from("direct:CityManager")
+                .setHeader(Exchange.HTTP_METHOD,constant("GET"))
+                .to(IP)
+                .log(REP);
+            }
+        };
+
         //add the road to the context
         consumer1RouteBuilder.addRoutesToCamelContext(context);
         consumer2RouteBuilder.addRoutesToCamelContext(context);
         routeBuilder.addRoutesToCamelContext(context);
+        httpRoad.addRoutesToCamelContext(context);
         //Start the context to activate the road
         context.start();
         //create a producer

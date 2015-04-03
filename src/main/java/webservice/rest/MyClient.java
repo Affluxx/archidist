@@ -112,8 +112,11 @@ public class MyClient {
                 Source.class, Service.Mode.MESSAGE);
         Map<String, Object> requestContext = dispatcher.getRequestContext();
         requestContext.put(MessageContext.HTTP_REQUEST_METHOD, "DELETE");
-        Source result = dispatcher.invoke(new JAXBSource(jc, city));
-        printSource(result);
+        try {
+            Source result = dispatcher.invoke(new JAXBSource(jc, city));
+        }catch (NullPointerException npe) {
+            System.out.println("Erreur : " + npe.getMessage());
+        }
     }
     /**
      * Remove all city

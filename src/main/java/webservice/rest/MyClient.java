@@ -116,7 +116,7 @@ public class MyClient {
     /**
      * Return the cities with the name
      * @param name : the name of the city
-     * @throws JAXBException
+     * @throws JAXBException : can throw a JAXBException
      */
     public void getCitiesByName(String name) throws JAXBException {
         executeRequest(HTTPMethod.GET, url + "/" + name, null);

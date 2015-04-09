@@ -80,6 +80,7 @@ public class CityManager {
      * @param city
      * City to be removed from the list
      * @return true if the list contain the city
+     * @throws CityNotFound : If the city is not found we have an exception
      */
     public boolean removeCity(City city) throws CityNotFound {
     // the method remove city works like add city.

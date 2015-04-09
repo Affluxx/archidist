@@ -39,18 +39,18 @@ public class Position {
      * Return true if the two objects are the same, false in others cases
      */
     public boolean equals(Object o){
-// At first we create a result and set it at false
+        // At first we create a result and set it at false
         boolean result = false;
-// We test if the object is a Position
+        // We test if the object is a Position
         if (o instanceof Position){
-// And if it's true result may change his value
+        // And if it's true result may change his value
             Position otherPosition = (Position)o;
-// If the two affirmations are true then result = true
-// If they are not result = false
+        // If the two affirmations are true then result = true
+        // If they are not result = false
             result = otherPosition.latitude == this.latitude &&
                     otherPosition.longitude == this.longitude;
         }
-// We return value
+        // We return value
         return result;
     }
     /**
@@ -93,14 +93,15 @@ public class Position {
      * return a string representation of a position
      */
     public String toString(){
-// At first we make a new Stringbuffer
+        // At first we make a new Stringbuffer
         final StringBuffer buffer = new StringBuffer();
-// we stock the result in the buffer
+        // we stock the result in the buffer
         buffer.append("(").append(latitude).append(", ").append(longitude).append(")");
-// and we return it with the method toString of the buffer
+        // and we return it with the method toString of the buffer
         return buffer.toString();
     }
     /**
+     * @param p : The position we are looking
      * @return distance in meter between 2 Position
      */
     public double distanceTo(Position p){

@@ -27,7 +27,6 @@ import java.text.ParseException;
  */
 @ServiceMode(value=Service.Mode.MESSAGE)
 public class MyServiceTP implements Provider<Source> {
-    //todo doc all
     private CityManager cityManager = new CityManager();
     private JAXBContext jc;
     @javax.annotation.Resource(type=Object.class)
@@ -42,12 +41,12 @@ public class MyServiceTP implements Provider<Source> {
             System.out.println("Exception " + je);
             throw new WebServiceException("Cannot create JAXBContext", je);
         }
+        cityManager.addCity(new City("Rouen", 49.437994, 1.132965, "FR"));
     }
     /**
-     * Return a Source
-     * @param source
-     * The source to use
-     * @return
+     * Return a Source and invoke a http method
+     * @param source : object who can be need for some method (opt)
+     * @return : the result of the execution
      */
     public Source invoke(Source source) {
         try{
@@ -86,8 +85,8 @@ public class MyServiceTP implements Provider<Source> {
      * Can throw a JAXBException if the source creation fail
      */
     private Source put(Source source, MessageContext mc) throws JAXBException {
-// TODO DONE à compléter
-// add a city in the citymanager
+    // TODO DONE à compléter
+    // add a city in the citymanager
         Unmarshaller u = jc.createUnmarshaller();
         City city =(City)u.unmarshal(source);
         cityManager.addCity(city);
@@ -138,7 +137,7 @@ public class MyServiceTP implements Provider<Source> {
      * Throw a JAXBException if the source creation fail
      */
     private Source post(Source source, MessageContext mc) throws JAXBException {
-// * rechercher une ville à partir de sa position
+    // * rechercher une ville à partir de sa position
         Unmarshaller u = jc.createUnmarshaller();
         Position position=(Position)u.unmarshal(source);
         CityManager cities = new CityManager();
@@ -157,15 +156,15 @@ public class MyServiceTP implements Provider<Source> {
             }
             return new JAXBSource(jc, cities);
         }
-/*Object message;
-try {
-} catch (CityNotFound cnf) {
-// TODO: retourner correctement l'exception
-// We don't understand what we have to do here
-message = cnf;
-}*/
-// TODO DONE à compléter
-// * rechercher les villes proches de cette position si l'url de post contient le mot clé "near"
+        /*Object message;
+        try {
+        } catch (CityNotFound cnf) {
+        // TODO: retourner correctement l'exception
+        // We don't understand what we have to do here
+        message = cnf;
+        }*/
+    // TODO DONE à compléter
+    // * rechercher les villes proches de cette position si l'url de post contient le mot clé "near"
     }
     /**
      * Return a new source
@@ -177,27 +176,18 @@ message = cnf;
      * Throw a JAXBException if the source creation fail
      */
     private Source get(MessageContext mc) throws JAXBException {
-// TODO DONE à compléter
-// * retourner seulement la ville dont le nom est contenu dans l'url d'appel
-// * retourner tous les villes seulement si le chemin d'accès est "all"
+    // TODO DONE à compléter
+    // * retourner seulement la ville dont le nom est contenu dans l'url d'appel
+    // * retourner tous les villes seulement si le chemin d'accès est "all"
         String path = (String) mc.get(MessageContext.PATH_INFO);
-        CityManager cities = new CityManager();
-        System.out.println(path);
-        if (path == null || path.equals("all")) {
-            System.out.println("ALL");
+
+        if (path.equals("all")) {
             return new JAXBSource(jc, cityManager);
         } else {
-            String[] info = path.split("/");
-            for (String name : info){
-                System.out.println("name : " + name);
-                for (City c : cityManager.getCities()){
-                    if(c.getName().equals(name)){
-                        cities.addCity(c);
-                    }
-                }
-            }
+            CityManager cm = new CityManager();
+            cm.setCities(cityManager.searchFor(path));
+            return new JAXBSource(jc,cm);
         }
-        return new JAXBSource(jc, cities);
     }
     public static void main(String args[]) {
         Endpoint e = Endpoint.create(HTTPBinding.HTTP_BINDING,

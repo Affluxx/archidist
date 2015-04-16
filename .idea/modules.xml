@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Archi dist.iml" filepath="$PROJECT_DIR$/Archi dist.iml" />
+      <module fileurl="file://$PROJECT_DIR$/ArchiDist.iml" filepath="$PROJECT_DIR$/ArchiDist.iml" />
     </modules>
   </component>
 </project>

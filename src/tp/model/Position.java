@@ -111,7 +111,9 @@ public class Position {
 	}
 
     /**
-     * @return distance in meter between 2 Position
+	 * Return the distance in meter between 2 position
+     * @return
+	 * The distance we look for
      */
     public double distanceTo(Position p){
         float pk = (float) (180/3.14169);

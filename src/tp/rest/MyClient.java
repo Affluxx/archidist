@@ -29,7 +29,6 @@ import tp.model.Position;
  *
  */
 public class MyClient {
-    //TODO : doc all
 	private Service service;
 	private JAXBContext jc;
     // Two constants
@@ -213,38 +212,6 @@ public class MyClient {
 	public static void main(String args[]) throws Exception {
         /**
          * We use a scenario to test all methods
-         */
-        /*
-             - Affichez l'ensemble des villes
-             - Supprimez toute les villes
-             - Affichez l'ensemble des villes
-             - Ajoutez Rouen en France (Lat : 49.443889; Long : 1.103333)
-             - Ajoutez Mogadiscio en Somalie (lat : 2.333333; Long : 48.85)
-             - Ajoutez Rouen en France (Lat : 49.443889; Long : 1.103333)
-             - Ajoutez Bihorel en France (Lat : 49.455278; Long : 1.116944)
-             - Ajoutez Londres en Angleterre (Lat : 51.504872; Long : -0.07857)
-             - Ajoutez Paris en France (Lat : 48.856578; Long : 2.351828)
-             - Ajoutez Paris en Canada (Lat : 43.2; Long : -80.38333)
-             - Affichez l'ensemble des villes
-             - Ajoutez Villers-Bocage en France (Lat : 49.083333; Long : -0.65)
-             - Ajoutez Villers-Bocage en France (Lat : 50.021858; Long : 2.326126)
-             - Affichez l'ensemble des villes
-             - Supprimez Villers-Bocage en France (Lat : 49.083333; Long : -0.65)
-             - Affichez l'ensemble des villes
-             - Supprimez Londres en Angleterre (Lat : 51.504872; Long : -0.07857)
-             - Supprimez Londres en Angleterre (Lat : 51.504872; Long : -0.07857)
-             - Affichez la ville située a la position exacte (Lat :49.443889; Long : 1.103333
-             - Affichez la ville située a la position exacte (Lat :49.083333; Long : -0.65
-             - Affichez la ville située a la position exacte (Lat :43.2; Long : -80.38)
-             - Affichez les villes situées à 10km de la position (Lat : 48.85; Long : 2.34)
-             - Affichez les villes situées à 10km de la position (Lat :42; Long : 64)
-             - Affichez les villes situées à 10km de la position (Lat :49.95; 1.11)
-             - Affichez la(les) ville(s) nommée(s) "Mogadiscio"
-             - Affichez la(les) ville(s) nommée(s) "Paris"
-             - Affichez la(les) ville(s) nommée(s) "Hyrule"
-            +- Supprimez la(les) ville(s) nommée(s) "Mogadiscio" ou "Paris ou "Hyrule"
-             - Supprimez toutes les villes
-             - Affichez l'ensemble des villes
          */
 
         MyClient client = new MyClient();

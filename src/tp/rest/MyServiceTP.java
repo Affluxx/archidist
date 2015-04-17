@@ -29,7 +29,6 @@ import java.text.ParseException;
  */
 @ServiceMode(value=Service.Mode.MESSAGE)
 public class MyServiceTP implements Provider<Source> {
-	//todo doc all
 	private CityManager cityManager = new CityManager();
 	
 	private JAXBContext jc;
@@ -55,6 +54,7 @@ public class MyServiceTP implements Provider<Source> {
      * @param source
      * The source to use
      * @return
+     * A new source with the city
      */
     public Source invoke(Source source) {
 
